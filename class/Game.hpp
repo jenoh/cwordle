@@ -8,11 +8,14 @@ class Game {
     private:
         std::string word;
         int tries;
+        int currentSolution[5];
     public:
         Game();
         void setRandomWord();
-        void verify();
+        bool verify(std::string user_try);
         std::string getWord() {return word;}
         int getTries() {return tries;}
+        int* getCurrentSolutions() {return currentSolution;}
+
 };
 #endif

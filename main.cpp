@@ -1,36 +1,52 @@
 #include <iostream>
 #include <string>
+#include <algorithm>
+#include <termcolor/termcolor.hpp>
+
 #include "class/Game.hpp"
+
 using namespace std;
 
-void printNbTries(int tries);
+void printSolution(string user_try, int* curent_solutions);
 
 int main()
 {
     Game game;
     string user_try;
+    bool end_game;
+
     
     // clear prompt
     cout << "\033[2J\033[H" << endl;
 
-    // choose a random word
-    game.getWord();
-
     while (game.getTries() > 0)
     {
-        printNbTries(game.getTries());
+        cout << endl << "You have alwready : " << game.getTries() << (game.getTries() != 1 ? " tries" : " try") << endl;
         cout << "Guess the wordle : ";
         cin >> user_try;
-        game.verify();
+        transform(user_try.begin(), user_try.end(), user_try.begin(), ::toupper);
+        end_game = game.verify(user_try);
+        printSolution(user_try, game.getCurrentSolutions());
+        if (end_game) {
+            cout << endl << termcolor::green << "Well done !!" << termcolor::reset << endl;
+            return 0;
+        }
     }
     
-    return 0;
 };
 
-void printNbTries(int tries) {
-    if (tries != 1) {
-        cout << "You have alwready : " << tries << " tries" << endl;
-    } else {
-        cout << "You have alwready : " << tries << " try" << endl;
+void printSolution(string user_try, int* current_solutions) {
+    for (int i = 0; i < user_try.size(); i++) {
+        switch ( current_solutions[i] ) {
+            case 0:
+                cout << user_try[i];
+                break;
+            case 1:
+                cout << termcolor::yellow << user_try[i] << termcolor::reset;
+                break;
+            case 2:
+                cout << termcolor::green << user_try[i] << termcolor::reset;
+                break;
+        }
     }
 }
