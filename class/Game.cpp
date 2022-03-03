@@ -9,4 +9,8 @@ Game::Game() {
 }
 void Game::setRandomWord() {
     word = "VAGUE";
+    tries = 5;
+}
+void Game::verify() {
+    tries--;
 }
