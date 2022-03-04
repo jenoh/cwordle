@@ -11,13 +11,12 @@ void printSolution(string user_try, int* curent_solutions);
 
 int main()
 {
+    // clear prompt
+    cout << "\033[2J\033[H" << endl;
+
     Game game;
     string user_try;
     bool end_game;
-
-    
-    // clear prompt
-    cout << "\033[2J\033[H" << endl;
 
     while (game.getTries() > 0)
     {
@@ -32,7 +31,7 @@ int main()
             return 0;
         }
     }
-    
+    cout << endl << termcolor::red << "The wordle was: " << game.getWord() << termcolor::reset << endl;
 };
 
 void printSolution(string user_try, int* current_solutions) {

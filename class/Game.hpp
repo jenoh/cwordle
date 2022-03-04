@@ -12,10 +12,10 @@ class Game {
     public:
         Game();
         void setRandomWord();
+        void setTries();
         bool verify(std::string user_try);
         std::string getWord() {return word;}
         int getTries() {return tries;}
         int* getCurrentSolutions() {return currentSolution;}
-
 };
 #endif
