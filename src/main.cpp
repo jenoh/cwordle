@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <termcolor/termcolor.hpp>
 
-#include "class/Game.hpp"
+#include "Game.hpp"
 
 using namespace std;
 
